@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir Math Appliqué</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #name{
+            text-align: center;
+            width: 60%;
+            margin: 50px auto;
+            color: white;
+            font-size: 25px;
+        }
+        .t{
+            border-radius: 25px 25px 25px 25px;
+            width: 90%;
+            border: solid 1px black;
+            background-color: rgb(53, 148, 221);
+        } 
+        td{
+            padding: 10px 0px;
+        }       
+        .b{
+            padding: 2px;
+            margin: 2px;
+        }
+        #table,.tt{
+            padding: 5px;
+            border-radius: 15px 15px 10px 10px;
+            width: 100%;
+            background-color: blanchedalmond;   
+        }
+        #hdr{
+            padding: 5px;
+            background-color: blanchedalmond; 
+        }
+        #table td{
+            text-align: center;
+        }
+        .aaa{
+            width: 20%;
+        }
+        #nb{
+            width:80% ;
+        }
+        h4,h3{
+          text-align: center;
+          margin:25px auto;
+          color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="name">Convertir Math Appliqué</h2>
+    <table class="t" align="center" >
+        <tr>
+            <td colspan="5" ><table class="tt" ><tr><th align="center" id="hdr"><b>Converter</b></th></tr></table></td>
+        </tr>
+        <tr>
+            <td align="center"> La bases </td>
+            <td align="center"><input type="radio" value="de" name="bases" id="Décimal"><br><label for="Décimal">Décimal</label></td>
+            <td align="center"><input type="radio" value="bi" name="bases" id="Binaire"><br><label for="Binaire">Binair</label></td>
+            <td align="center"><input type="radio" value="oc" name="bases" id="Octal"><br><label for="Octal">Octal</label></td>
+            <td align="center"><input type="radio" value="he" name="bases" id="Héxadécimal"><br><label for="Héxadécimal">héxadécimal</label></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td align="center" class="aaa"><input class="b" type="text" id="nb" placeholder="Numbr"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="center"><button onclick="vide()" class="b">Nouveau</button> </td>
+            <td><button onclick="convert()" class="b">Convertir</button></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="5">
+                <table id="table" border="1" >
+                    <tr>
+                        <td>rubréque </td>
+                        <td>décimal</td>
+                        <td>binire</td>
+                        <td>octal</td>
+                        <td>héxadécimal</td>
+                    </tr>
+                    <!-- <tr>
+                        <td><p>10</p></td>
+                        <td ><p>1010</p></td>
+                        <td ><p>001000</p></td>
+                        <td><p>A</p></td>
+                    </tr> -->
+                </table>
+            </td>
+        </tr>
+    </table>
+    <h3>Contact US </h3>
+    <h4>E-mail : ali99boutahar@gmail.com</h4>
+    <h4>Phone : +212-638-33-63-65</h4> 
+    
+    <script>
+
+        function vide(){
+            setTimeout(location.reload(),1000);
+            document.getElementById("base").value="";
+            document.getElementById("nb").value="";
+            document.querySelector('input[id="Binaire"]').checked = false;            
+            document.querySelector('input[id="Décimal"]').checked = false;            
+            document.querySelector('input[id="Héxadécimal"]').checked = false;            
+            document.querySelector('input[id="Octal"]').checked = false;
+        }
+
+        function convert(){
+            if (document.querySelector('input[name="bases"]:checked') == null){alert ("Please Choose bases")}
+            var a = document.querySelector('input[name="bases"]:checked').value;
+            if (document.getElementById("nb").value==""){
+                alert ("Please Choose Number")
+                document.getElementById("nb").style.border="1px solid red";
+                document.getElementById("nb").focus();
+            }
+            if (a=="de"){
+                let Décimal = Number(document.getElementById("nb").value);
+                bi = Décimal.toString(2);
+                oc = Décimal.toString(8);
+                da = Décimal;
+                he = Décimal.toString(16).toUpperCase();
+                document.getElementById("table").innerHTML+=("<tr><td>valeur </td><td><p>"+da+"</p></td><td><p>"+bi+"</p></td><td><p>"+oc+"</p></td><td><p>"+he+"</p></td></tr>");
+                document.getElementById("nb").focus();
+                document.getElementById("nb").value="";
+            }
+
+            if (a=="bi"){
+                
+                // var bi = nb;
+                // var g =bi.split("").reverse().join("");
+                // let x = Number([]);
+                // for ( let i = g.length - 1 ; i >= 0 ; i--){x += g[i]*(2**i);}
+                // da=x;
+                let bainaire = document.getElementById("nb").value.split("").join("");
+                // var g = bainaire;
+                for ( var i = 1 ; i <= bainaire.length ; i++){
+                    if(bainaire[i]==1 || bainaire[i]==0){
+                        bi = bainaire;
+                        da = parseInt(bainaire, 2);
+                        he = parseInt(bainaire, 2).toString(16).toUpperCase();
+                        oc = parseInt(bainaire, 2).toString(8);  
+                        document.getElementById("table").innerHTML+=("<tr><td>valeur </td><td><p>"+da+"</p></td><td><p>"+bi+"</p></td><td><p>"+oc+"</p></td><td><p>"+he+"</p></td></tr>");
+                        document.getElementById("nb").focus();
+                        document.getElementById("nb").value="";
+                    }
+                    else if(bainaire[i]>=1){
+                        alert("Please this number not binaire");
+                        document.getElementById("nb").focus();
+                        document.getElementById("nb").value="";
+                    }
+                    break
+                }
+            }
+            
+            if (a=="oc"){
+                let octal = document.getElementById("nb").value.split("").filter((x)=> x < 8).join("")
+                bi = parseInt(octal, 8).toString(2);
+                oc = octal;
+                da = parseInt(octal, 8);
+                he = parseInt(octal, 8).toString(16).toUpperCase(); 
+                document.getElementById("table").innerHTML+=("<tr><td>valeur </td><td><p>"+da+"</p></td><td><p>"+bi+"</p></td><td><p>"+oc+"</p></td><td><p>"+he+"</p></td></tr>");
+                document.getElementById("nb").focus();
+                document.getElementById("nb").value="";
+            }
+
+            if(a=="he"){
+                var hexa = document.getElementById("nb").value.split("").filter((x)=>
+                x =="A"||x =="B"||x =="C"||x =="D"||x =="E"||x =="F"||
+                x =="a"||x =="b"||x =="c"||x =="d"||x =="e"||x =="f"|| x>=0 ).join("")
+
+                bi = parseInt(hexa,16).toString(2);
+                da =parseInt(hexa,16);
+                he = hexa.toUpperCase();
+                oc = parseInt(hexa,16).toString(8);
+                document.getElementById("table").innerHTML+=("<tr><td>valeur </td><td><p>"+da+"</p></td><td><p>"+bi+"</p></td><td><p>"+oc+"</p></td><td><p>"+he+"</p></td></tr>");
+                document.getElementById("nb").focus();
+                document.getElementById("nb").value="";
+            }
+        }
+    </script>
+    
+</body>
+</html>
